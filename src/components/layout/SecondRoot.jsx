@@ -4,10 +4,17 @@ import Course from "./../images/course/Course";
 
 const SecondRoot = () => {
   return (
-    <div>
-      <Course />
-      <Outlet />
-    </div>
+    <>
+      <div className="flex">
+        <div className="bg-green-600">
+          <Course />
+          {/* <Category /> */}
+        </div>
+        <div className="bg-orange-500">
+          <Outlet />
+        </div>
+      </div>
+    </>
   );
 };
 

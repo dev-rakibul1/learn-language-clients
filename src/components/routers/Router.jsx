@@ -1,11 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
-import SecondRoot from "../layout/SecondRoot";
 import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
-import Course from "./../images/course/Course";
-import Category from "./../pages/category/Category";
+import SingleCard from "./../images/singleCard/SingleCard";
 import Login from "./../pages/login/Login";
+import MoreDetails from "./../pages/moreDetails/MoreDetails";
 import Register from "./../pages/register/Register";
 import SinglePart from "./../pages/single/SinglePart";
 
@@ -18,7 +17,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/language"),
+        loader: () => fetch("http://localhost:5000/technology"),
       },
       {
         path: "/singlePart/:id",
@@ -29,24 +28,28 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
 
-      // secound layout
+      // second layout
+      // second layout
       {
-        path: "/course",
-        element: <SecondRoot />,
-        loader: () => fetch("http://localhost:5000/language"),
-        children: [
-          {
-            path: "/course/:id",
-            element: <Course />,
-          },
-        ],
-      },
-      {
-        path: "/categories/:id",
-        element: <Category />,
+        path: "/singleCard/:id",
+        element: <SingleCard />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/singlePart/${params.id}`),
       },
+
+      {
+        path: "/readMore/:id",
+        element: <MoreDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/singlePart/${params.id}`),
+      },
+
+      // {
+      //   path: "/categories/:id",
+      //   element: <Category />,
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:5000/singlePart/${params.id}`),
+      // },
     ],
   },
 ]);

@@ -1,13 +1,13 @@
 import React from "react";
 import { FaRegEye, FaStar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
-// 019 09 79 21 75
-
-const SinglePart = ({ data }) => {
+const SingleCard = () => {
+  const data = useLoaderData();
   const { images, id, description, price, title, rating } = data;
+  console.log(data);
   return (
-    <div className="w-[75%] mx-auto px-2">
+    <div className="md:w-[75%] mx-auto px-2">
       <div className="card w-full glass">
         <figure>
           <img src={images} alt="technology images!" className="w-[50%]" />
@@ -27,7 +27,6 @@ const SinglePart = ({ data }) => {
               </span>
             </div>
           </div>
-
           {description.length > 200 ? (
             <p>
               {description.slice(0, 250) + "..."}
@@ -41,10 +40,15 @@ const SinglePart = ({ data }) => {
           ) : (
             <p>{description}</p>
           )}
+          <div className="card-actions justify-end">
+            <Link to="/">
+              <button className="btn btn-primary">Go back</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default SinglePart;
+export default SingleCard;

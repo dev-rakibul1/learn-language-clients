@@ -1,10 +1,9 @@
 import React from "react";
 import { FaRegEye, FaStar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
-// 019 09 79 21 75
-
-const SinglePart = ({ data }) => {
+const MoreDetails = () => {
+  const data = useLoaderData();
   const { images, id, description, price, title, rating } = data;
   return (
     <div className="w-[75%] mx-auto px-2">
@@ -28,23 +27,11 @@ const SinglePart = ({ data }) => {
             </div>
           </div>
 
-          {description.length > 200 ? (
-            <p>
-              {description.slice(0, 250) + "..."}
-              {/* <Link>Read more</Link> */}
-              <Link to={`/readMore/${id}`}>
-                <button className=" rounded-md font-bold text-purple-600 py-2 mb-16 my-1 px-2">
-                  Read more
-                </button>
-              </Link>
-            </p>
-          ) : (
-            <p>{description}</p>
-          )}
+          {description}
         </div>
       </div>
     </div>
   );
 };
 
-export default SinglePart;
+export default MoreDetails;

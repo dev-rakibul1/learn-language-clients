@@ -85,12 +85,6 @@ const Menu = () => {
                 <li className="text-white hover:text-indigo-200">
                   <Link to="/course">Course</Link>
                 </li>
-                <li className="text-white hover:text-indigo-200">
-                  <Link to="javascript:void(0)">Blog</Link>
-                </li>
-                <li className="text-white hover:text-indigo-200">
-                  <Link to="javascript:void(0)">Contact US</Link>
-                </li>
               </ul>
 
               <div className="mt-3 space-y-2 lg:hidden md:inline-block">
