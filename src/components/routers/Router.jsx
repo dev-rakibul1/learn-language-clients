@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRouter from "../context/PrivateRouter";
 import Root from "../layout/Root";
 import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/singlePart/:id",
-        element: <SinglePart />,
+        element: (
+          <PrivateRouter>
+            <SinglePart />
+          </PrivateRouter>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/singlePart/${params.id}`),
       },
@@ -32,14 +37,23 @@ const router = createBrowserRouter([
       // second layout
       {
         path: "/singleCard/:id",
-        element: <SingleCard />,
+        element: (
+          <PrivateRouter>
+            {" "}
+            <SingleCard />
+          </PrivateRouter>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/singlePart/${params.id}`),
       },
 
       {
         path: "/readMore/:id",
-        element: <MoreDetails />,
+        element: (
+          <PrivateRouter>
+            <MoreDetails />
+          </PrivateRouter>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/singlePart/${params.id}`),
       },
