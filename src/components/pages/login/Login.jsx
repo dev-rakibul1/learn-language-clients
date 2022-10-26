@@ -1,13 +1,16 @@
-import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "./../../context/AuthProvider";
+import { AuthContext } from "../../context/ContextProvider";
 
 const Login = () => {
-  const { userLoginMethod, facebookPopupLogin, googlePopupSign } =
-    useContext(AuthContext);
+  const {
+    userSign,
+    facebookPopupLogin,
+    signInWithGoogleMethod,
+    signInWithFacebookMethod,
+  } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,47 +26,57 @@ const Login = () => {
   };
 
   const handleUserLogin = (email, password) => {
-    userLoginMethod(email, password)
+    userSign(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setError("");
         toast.success("Login Success");
-        navigate(from, { replace: true });
       })
       .catch((err) => {
-        setError(err.message);
         toast.error("Login fail!");
       });
   };
 
-  // handle facebook popup login
-  const facebookProvider = new FacebookAuthProvider();
-  const handleFacebookLogin = () => {
-    facebookPopupLogin(facebookProvider)
+  // handle google popup sign in
+  // const provider = new GoogleAuthProvider();
+  const handleGooglePopupSign = () => {
+    signInWithGoogleMethod()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
       })
       .then((err) => {
         console.log(err);
       });
   };
 
-  // handle google popup sign in
-  const provider = new GoogleAuthProvider();
-  const handleGooglePopupSign = () => {
-    googlePopupSign(provider)
+  // handle facebook popup login
+  // const facebookProvider = new FacebookAuthProvider();
+  const handleFacebookLogin = () => {
+    signInWithFacebookMethod()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .then((err) => {
         console.log(err);
       });
   };
+
+  // // handle google popup sign in
+  // const provider = new GoogleAuthProvider();
+  // const handleGooglePopupSign = () => {
+  //   googlePopupSign(provider)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //       navigate(from, { replace: true });
+  //     })
+  //     .then((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div className="md:w-[50%] px-2 mx-auto mt-16">

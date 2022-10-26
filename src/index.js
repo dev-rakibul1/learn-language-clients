@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
 import App from "./App";
 import ContextProvider from "./components/context/ContextProvider";
 import "./index.css";
@@ -10,6 +11,7 @@ root.render(
   <React.StrictMode>
     <ContextProvider>
       <App />
+      <Toaster />
     </ContextProvider>
   </React.StrictMode>
 );

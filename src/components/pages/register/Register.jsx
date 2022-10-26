@@ -1,24 +1,29 @@
-import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { FacebookAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { AuthContext } from "./../../context/AuthProvider";
+import { AuthContext } from "../../context/ContextProvider";
 
 const Register = () => {
-  const { user, googlePopupSign, userEmailPassLogin, facebookPopupLogin } =
-    useContext(AuthContext);
+  const {
+    user,
+    signInWithGoogleMethod,
+    userEmailPassLogin,
+    facebookPopupLogin,
+    userLogOut,
+    signInWithFacebookMethod,
+  } = useContext(AuthContext);
   const [error, setError] = useState("");
 
   const onRegisterHandler = (event) => {
     event.preventDefault();
     const form = event.target;
-    const fName = form.fName.value;
-    const lName = form.lName.value;
+    const name = form.name.value;
+    const photUrl = form.photUrl.value;
     const email = form.email.value;
     const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
-    console.log(fName, lName, email, password, confirmPassword);
+    console.log(name, photUrl, email, password);
     handleUserEmailPassword(email, password);
   };
 
@@ -27,21 +32,17 @@ const Register = () => {
     userEmailPassLogin(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         toast.success("Form register successfully");
-        setError("");
       })
       .then((err) => {
-        console.log(err);
-        toast.error("Register fail!");
-        setError(err.message);
+        toast.error(err);
       });
   };
 
   // handle google popup sign in
-  const provider = new GoogleAuthProvider();
+  // const provider = new GoogleAuthProvider();
   const handleGooglePopupSign = () => {
-    googlePopupSign(provider)
+    signInWithGoogleMethod()
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -54,7 +55,14 @@ const Register = () => {
   // handle facebook popup login
   const facebookProvider = new FacebookAuthProvider();
   const handleFacebookLogin = () => {
-    facebookPopupLogin(facebookProvider);
+    signInWithFacebookMethod(facebookProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -64,26 +72,26 @@ const Register = () => {
         onSubmit={onRegisterHandler}
       >
         <h4 className="text-xl font-bold">Create an account</h4>
-        {/* first name */}
+        {/* name */}
         <div className="mt-7">
-          <label htmlFor="fName">First name</label>
+          <label htmlFor="name"> Name</label>
           <input
             type="text"
-            placeholder="First name"
+            placeholder="Your name"
             className="w-full h-11 border p-3 rounded border-gray-400"
-            id="fName"
-            name="fName"
+            id="name"
+            name="name"
           />
         </div>
-        {/* last name */}
+        {/* Photo url */}
         <div className="mt-7">
-          <label htmlFor="lName">Last name</label>
+          <label htmlFor="photUrl">Photo url</label>
           <input
             type="text"
-            placeholder="Last name"
+            placeholder="Photo url"
             className="w-full h-11 border p-3 rounded border-gray-400"
-            id="lName"
-            name="lName"
+            id="photUrl"
+            name="photUrl"
           />
         </div>
         {/* email */}
@@ -106,17 +114,6 @@ const Register = () => {
             className="w-full h-11 border p-3 rounded border-gray-400"
             id="password"
             name="password"
-          />
-        </div>
-        {/* Confirm password*/}
-        <div className="mt-7">
-          <label htmlFor="confirmPassword">Confirm password</label>
-          <input
-            type="Confirm password"
-            placeholder="********"
-            className="w-full h-11 border p-3 rounded border-gray-400"
-            id="confirmPassword"
-            name="confirmPassword"
           />
         </div>
 

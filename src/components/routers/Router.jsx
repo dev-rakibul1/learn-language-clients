@@ -5,6 +5,7 @@ import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
 import Course from "./../images/course/Course";
 import Category from "./../pages/category/Category";
+import Login from "./../pages/login/Login";
 import Register from "./../pages/register/Register";
 import SinglePart from "./../pages/single/SinglePart";
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/singlePart/${params.id}`),
       },
       { path: "/register", element: <Register /> },
+      { path: "/login", element: <Login /> },
 
       // secound layout
       {

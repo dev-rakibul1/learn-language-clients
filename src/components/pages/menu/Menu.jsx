@@ -1,9 +1,19 @@
-import React, { useState } from "react";
-import { FaLaptopCode } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { FaLaptopCode, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/ContextProvider";
 
 const Menu = () => {
   const [navbar, setNavbar] = useState(false);
+  const { user, userLogOut } = useContext(AuthContext);
+
+  // user logout
+  const handleUserLogOut = () => {
+    userLogOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <nav className="w-full bg-purple-500 shadow">
@@ -100,18 +110,43 @@ const Menu = () => {
             </div>
           </div>
           <div className="hidden space-x-2 md:inline-block">
-            <Link
-              to="/register"
-              className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-            >
-              Sign in
-            </Link>
-            <Link
-              to="javascript:void(0)"
-              className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-            >
-              Sign up
-            </Link>
+            {user && user?.uid ? (
+              <div className="flex items-center">
+                <Link className="p-2" title="User profile">
+                  {user?.photoURL ? (
+                    <img
+                      src={user?.photoURL}
+                      alt="profile"
+                      className="w-8 h-8 rounded-full"
+                    />
+                  ) : (
+                    <FaUserCircle />
+                  )}
+                </Link>
+                <Link
+                  className="p-2 text-2xl"
+                  title="Log out"
+                  onClick={handleUserLogOut}
+                >
+                  <FaPowerOff />
+                </Link>
+              </div>
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                >
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
