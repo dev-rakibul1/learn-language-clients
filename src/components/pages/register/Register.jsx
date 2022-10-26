@@ -23,8 +23,19 @@ const Register = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    if (typeof name !== "string" || name === "") {
+      toast.error("please provide a valid name");
+    }
     const photUrl = form.photUrl.value;
+
+    // email check
     const email = form.email.value;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(email) || email === "") {
+      toast.error("Please provide a valid email");
+      setError("Your email is not valid");
+    }
     const password = form.password.value;
     console.log(name, photUrl, email, password);
     handleUserEmailPassword(email, password);
@@ -122,8 +133,8 @@ const Register = () => {
             name="password"
           />
         </div>
-        <p>{error}</p>
-        {console.log(error)}
+        <p className="text-red-600">{error}</p>
+
         {/* Register btn */}
         <button className="bg-lime-600 w-full py-2 rounded mt-7 text-white  ">
           Register

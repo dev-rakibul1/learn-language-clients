@@ -20,6 +20,13 @@ const Login = () => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!re.test(email)) {
+      toast.error("Your email is not valid");
+      setError("Your email is not valid");
+    }
     const password = form.password.value;
     console.log(email, password);
     handleUserLogin(email, password);
