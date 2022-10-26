@@ -16,11 +16,11 @@ const Root = () => {
       <h1 className="text-center font-bold text-4xl pb-5 mt-24">
         Select your best choice
       </h1>
-      <div className="flex w-[90%] mx-auto gap-4 mt-11">
-        <div className="grow bg-lime-100 w-[20%]">
+      <div className="md:flex w-[90%] mx-auto gap-4 mt-11">
+        <div className="grow bg-lime-100 md:w-[20%] px-2">
           <Category />
         </div>
-        <div className="grow-1 w-[80%]">
+        <div className="grow-1 md:w-[80%] px-2">
           <Outlet />
         </div>
       </div>

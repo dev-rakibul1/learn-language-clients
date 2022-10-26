@@ -19,7 +19,7 @@ const Menu = () => {
       <nav className="w-full bg-purple-500 shadow">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
-            <div className="flex items-center justify-between py-3 md:py-5 md:block">
+            <div className="flex items-center justify-between py-3 md:py-5 md:inline-block">
               <Link to="/" className="text-xl">
                 <h2
                   className="text-2xl font-bold text-white"
@@ -87,7 +87,7 @@ const Menu = () => {
                 </li>
               </ul>
 
-              <div className="mt-3 space-y-2 lg:hidden md:inline-block">
+              {/* <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                 <Link
                   to="javascript:void(0)"
                   className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
@@ -100,10 +100,49 @@ const Menu = () => {
                 >
                   Sign up
                 </Link>
+              </div> */}
+              <div className="mt-3 space-y-2 lg:hidden md:inline-block">
+                {user && user?.uid ? (
+                  <div className="flex items-center">
+                    <Link className="p-2" title="User profile">
+                      {user?.photoURL ? (
+                        <img
+                          src={user?.photoURL}
+                          alt="profile"
+                          className="w-8 h-8 rounded-full"
+                        />
+                      ) : (
+                        <FaUserCircle />
+                      )}
+                    </Link>
+                    <Link
+                      className="p-2 text-2xl"
+                      title="Log out"
+                      onClick={handleUserLogOut}
+                    >
+                      <FaPowerOff />
+                    </Link>
+                  </div>
+                ) : (
+                  <>
+                    <Link
+                      to="/register"
+                      className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+                    >
+                      Register
+                    </Link>
+                    <Link
+                      to="/login"
+                      className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                    >
+                      Login
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
-          <div className="hidden space-x-2 md:inline-block">
+          <div className="hidden space-x-2 lg:inline-block">
             {user && user?.uid ? (
               <div className="flex items-center">
                 <Link className="p-2" title="User profile">
