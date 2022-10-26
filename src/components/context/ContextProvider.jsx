@@ -13,6 +13,7 @@ import { auth } from "../firebase/firebase.Config";
 export const AuthContext = createContext();
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   //   const user = { name: "Rakibul" };
 
   // user email and password login method
@@ -22,24 +23,27 @@ const ContextProvider = ({ children }) => {
 
   // sign with email and password
   const userSign = (email, password) => {
-    // setLoading(true);
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // user log out
   const userLogOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
   // sign in with google
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogleMethod = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // login with facebook popup method
   const fbProvider = new FacebookAuthProvider();
   const signInWithFacebookMethod = () => {
+    setLoading(true);
     return signInWithPopup(auth, fbProvider);
   };
 
@@ -47,6 +51,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
       console.log(currentUser);
       //   setLoading(false);
     });
@@ -63,6 +68,7 @@ const ContextProvider = ({ children }) => {
     userSign,
     signInWithGoogleMethod,
     signInWithFacebookMethod,
+    loading,
   };
   return (
     <div>

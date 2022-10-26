@@ -2,7 +2,7 @@ import { FacebookAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/ContextProvider";
 
 const Register = () => {
@@ -15,6 +15,9 @@ const Register = () => {
     signInWithFacebookMethod,
   } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
 
   const onRegisterHandler = (event) => {
     event.preventDefault();
@@ -33,11 +36,14 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Form register successfully");
+        navigate(from, { replace: true });
       })
       .then((err) => {
         toast.error(err);
+        setError("Login fail");
       });
   };
+  console.log(error);
 
   // handle google popup sign in
   // const provider = new GoogleAuthProvider();
@@ -116,7 +122,8 @@ const Register = () => {
             name="password"
           />
         </div>
-
+        <p>{error}</p>
+        {console.log(error)}
         {/* Register btn */}
         <button className="bg-lime-600 w-full py-2 rounded mt-7 text-white  ">
           Register
