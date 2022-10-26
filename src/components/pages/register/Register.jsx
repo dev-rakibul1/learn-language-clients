@@ -13,6 +13,7 @@ const Register = () => {
     facebookPopupLogin,
     userLogOut,
     signInWithFacebookMethod,
+    updateUserProfile,
   } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
@@ -39,6 +40,15 @@ const Register = () => {
     const password = form.password.value;
     console.log(name, photUrl, email, password);
     handleUserEmailPassword(email, password);
+
+    //   updateUserProfile
+    const profile = {
+      displayName: name,
+      photoURL: photUrl,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .then((err) => console.log(err));
   };
 
   // handle user email password sign

@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Hero = () => {
+  const [toggle, setToggle] = useState(false);
+
+  const handleThemeColor = () => {
+    setToggle(!toggle);
+  };
+
   return (
-    <div>
+    <div className={toggle ? "bg-dark-themes" : "bg-light-themes"}>
       <div
         className="hero min-h-screen"
         style={{
@@ -18,6 +24,14 @@ const Hero = () => {
               code and you will be largest developer in the world!
             </p>
             <button className="btn btn-primary">Get Started</button>
+            <div>
+              <p className="font-thin text-xs mb-2">Choice your themes mode</p>
+              <input
+                type="checkbox"
+                className="toggle"
+                onClick={handleThemeColor}
+              />
+            </div>
           </div>
         </div>
       </div>
