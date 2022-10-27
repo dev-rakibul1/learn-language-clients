@@ -104,7 +104,7 @@ const Menu = () => {
               <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                 {user && user?.uid ? (
                   <div className="flex items-center">
-                    <Link className="p-2" title="User profile">
+                    <Link className="p-2" title={user.displayName}>
                       {user?.photoURL ? (
                         <img
                           src={user?.photoURL}
@@ -145,7 +145,7 @@ const Menu = () => {
           <div className="hidden space-x-2 lg:inline-block">
             {user && user?.uid ? (
               <div className="flex items-center">
-                <Link className="p-2" title="User profile">
+                <Link className="p-2" title={user.displayName}>
                   {user?.photoURL ? (
                     <img
                       src={user?.photoURL}
