@@ -52,6 +52,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .then((err) => {
         console.log(err);
@@ -65,7 +66,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .then((err) => {
         console.log(err);

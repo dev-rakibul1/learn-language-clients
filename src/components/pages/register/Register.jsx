@@ -40,15 +40,7 @@ const Register = () => {
     const password = form.password.value;
     console.log(name, photUrl, email, password);
     handleUserEmailPassword(email, password);
-
-    //   updateUserProfile
-    const profile = {
-      displayName: name,
-      photoURL: photUrl,
-    };
-    updateUserProfile(profile)
-      .then(() => {})
-      .then((err) => console.log(err));
+    handleUseUpdateProfile(name, photUrl);
   };
 
   // handle user email password sign
@@ -73,6 +65,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .then((err) => {
         console.log(err);
@@ -86,10 +79,24 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // update user profile
+  const handleUseUpdateProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then((res) => {
+        console.log(res);
+      })
+      .then((err) => console.log(err));
   };
 
   return (

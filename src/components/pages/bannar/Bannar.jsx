@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import bannerImages from "../../images/bannar.png";
+import Btn from "../button/Btn";
 
 const Bannar = () => {
   return (
@@ -11,11 +11,7 @@ const Bannar = () => {
           <p className="text-white py-2">
             This is our some best selling technology. and{" "}
           </p>
-          <Link to="/course">
-            <button className="bg-white px-6 rounded-md py-2">
-              See details
-            </button>
-          </Link>
+          <Btn />
         </div>
         <div>
           <img src={bannerImages} alt="" />

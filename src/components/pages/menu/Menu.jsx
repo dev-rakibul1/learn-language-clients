@@ -83,7 +83,10 @@ const Menu = () => {
                   <Link to="/">Course</Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/blog">FAQ</Link>
+                </li>
+                <li className="text-white hover:text-indigo-200">
+                  <Link to="/blog2">Blog</Link>
                 </li>
               </ul>
 
@@ -153,7 +156,7 @@ const Menu = () => {
                       className="w-8 h-8 rounded-full"
                     />
                   ) : (
-                    <FaUserCircle />
+                    <FaUserCircle className="w-7 h-7" />
                   )}
                 </Link>
                 <Link

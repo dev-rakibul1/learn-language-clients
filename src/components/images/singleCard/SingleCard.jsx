@@ -18,7 +18,7 @@ const SingleCard = () => {
     <div className="md:w-[75%] mx-auto px-2" ref={pdfRef}>
       {/* print */}
       <div
-        className="border inline-block me-auto ml-auto mb-4 text-end cursor-pointer"
+        className="border inline-block me-auto ml-auto mb-4 text-end cursor-pointer mt-7"
         onClick={handlePrint}
         title="Print technology"
       >

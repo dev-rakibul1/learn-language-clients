@@ -5,6 +5,7 @@ import Blog from "../pages/blog/Blog";
 import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
 import SingleCard from "./../images/singleCard/SingleCard";
+import Blog2 from "./../pages/blog/Blog2";
 import Login from "./../pages/login/Login";
 import MoreDetails from "./../pages/moreDetails/MoreDetails";
 import Register from "./../pages/register/Register";
@@ -33,9 +34,18 @@ const router = createBrowserRouter([
       },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
+
+      // This is a FAQ routers (firstly i'm mistook it then it is i'm not change it )
       {
-        path: "/blog",
+        path: "/blog", //FAQ components
         element: <Blog />,
+        loader: () => fetch("http://localhost:5000/blog"),
+      },
+
+      // Real blog router
+      {
+        path: "/blog2", // Blog components
+        element: <Blog2 />,
         loader: () => fetch("http://localhost:5000/blog"),
       },
 
