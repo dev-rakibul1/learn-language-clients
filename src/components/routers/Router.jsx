@@ -33,7 +33,11 @@ const router = createBrowserRouter([
       },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
-      { path: "/blog", element: <Blog /> },
+      {
+        path: "/blog",
+        element: <Blog />,
+        loader: () => fetch("http://localhost:5000/blog"),
+      },
 
       // second layout
       // second layout
