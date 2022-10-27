@@ -6,6 +6,7 @@ import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
 import SingleCard from "./../images/singleCard/SingleCard";
 import Blog2 from "./../pages/blog/Blog2";
+import ReadBlog from "./../pages/blog/ReadBlog";
 import Login from "./../pages/login/Login";
 import MoreDetails from "./../pages/moreDetails/MoreDetails";
 import Register from "./../pages/register/Register";
@@ -46,7 +47,13 @@ const router = createBrowserRouter([
       {
         path: "/blog2", // Blog components
         element: <Blog2 />,
-        loader: () => fetch("http://localhost:5000/blog"),
+        loader: () => fetch("http://localhost:5000/blogInfo"),
+      },
+      {
+        path: "/readBlog/:id", // Blog components
+        element: <ReadBlog />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/blogInfo/${params.id}`),
       },
 
       // second layout
