@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRouter from "../context/PrivateRouter";
 import Root from "../layout/Root";
+import Blog from "../pages/blog/Blog";
 import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
 import SingleCard from "./../images/singleCard/SingleCard";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
+      { path: "/blog", element: <Blog /> },
 
       // second layout
       // second layout
