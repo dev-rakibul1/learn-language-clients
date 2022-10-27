@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       // This is a FAQ routers (firstly i'm mistook it then it is i'm not change it )
       {
         path: "/blog", //FAQ components
-        element: <Blog />,
+        element: (
+          <PrivateRouter>
+            <Blog />
+          </PrivateRouter>
+        ),
         loader: () => fetch("http://localhost:5000/blog"),
       },
 
