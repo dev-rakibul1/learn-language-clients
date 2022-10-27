@@ -21,7 +21,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/technology"),
+        loader: () =>
+          fetch("https://learn-language-server.vercel.app/technology"),
       },
       {
         path: "/singlePart/:id",
@@ -31,7 +32,9 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singlePart/${params.id}`),
+          fetch(
+            `https://learn-language-server.vercel.app/singlePart/${params.id}`
+          ),
       },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
@@ -44,20 +47,23 @@ const router = createBrowserRouter([
             <Blog />
           </PrivateRouter>
         ),
-        loader: () => fetch("http://localhost:5000/blog"),
+        loader: () => fetch("https://learn-language-server.vercel.app/blog"),
       },
 
       // Real blog router
       {
         path: "/blog2", // Blog components
         element: <Blog2 />,
-        loader: () => fetch("http://localhost:5000/blogInfo"),
+        loader: () =>
+          fetch("https://learn-language-server.vercel.app/blogInfo"),
       },
       {
         path: "/readBlog/:id", // Blog components
         element: <ReadBlog />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blogInfo/${params.id}`),
+          fetch(
+            `https://learn-language-server.vercel.app/blogInfo/${params.id}`
+          ),
       },
 
       // second layout
@@ -71,7 +77,9 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singlePart/${params.id}`),
+          fetch(
+            `https://learn-language-server.vercel.app/singlePart/${params.id}`
+          ),
       },
 
       {
@@ -82,14 +90,16 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singlePart/${params.id}`),
+          fetch(
+            `https://learn-language-server.vercel.app/singlePart/${params.id}`
+          ),
       },
 
       // {
       //   path: "/categories/:id",
       //   element: <Category />,
       //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/singlePart/${params.id}`),
+      //     fetch(`https://learn-language-server.vercel.app/singlePart/${params.id}`),
       // },
     ],
   },
