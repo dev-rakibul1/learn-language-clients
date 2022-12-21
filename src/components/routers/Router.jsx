@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRouter from "../context/PrivateRouter";
+import DetailsLayout from "../layout/DetailsLayout";
 import Root from "../layout/Root";
 import Blog from "../pages/blog/Blog";
+import Category from "../pages/category/Category";
 import Error from "../pages/error/Error";
 import Home from "../pages/home/Home";
 import SingleCard from "./../images/singleCard/SingleCard";
@@ -42,11 +44,7 @@ const router = createBrowserRouter([
       // This is a FAQ routers (firstly i'm mistook it then it is i'm not change it )
       {
         path: "/blog", //FAQ components
-        element: (
-          <PrivateRouter>
-            <Blog />
-          </PrivateRouter>
-        ),
+        element: <Blog />,
         loader: () => fetch("https://learn-language-server.vercel.app/blog"),
       },
 
@@ -68,19 +66,19 @@ const router = createBrowserRouter([
 
       // second layout
       // second layout
-      {
-        path: "/singleCard/:id",
-        element: (
-          <PrivateRouter>
-            {" "}
-            <SingleCard />
-          </PrivateRouter>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://learn-language-server.vercel.app/singlePart/${params.id}`
-          ),
-      },
+      // {
+      //   path: "/singleCard/:id",
+      //   element: (
+      //     <PrivateRouter>
+      //       {" "}
+      //       <SingleCard />
+      //     </PrivateRouter>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(
+      //       `https://learn-language-server.vercel.app/singlePart/${params.id}`
+      //     ),
+      // },
 
       {
         path: "/readMore/:id",
@@ -94,13 +92,43 @@ const router = createBrowserRouter([
             `https://learn-language-server.vercel.app/singlePart/${params.id}`
           ),
       },
+    ],
+  },
 
-      // {
-      //   path: "/categories/:id",
-      //   element: <Category />,
-      //   loader: ({ params }) =>
-      //     fetch(`https://learn-language-server.vercel.app/singlePart/${params.id}`),
-      // },
+  // {
+  //   path: "/categories/:id",
+  //   element: <Category />,
+  //   loader: ({ params }) =>
+  //     fetch(`https://learn-language-server.vercel.app/singlePart/${params.id}`),
+  // },
+
+  {
+    path: "/detailsLayout",
+    element: <DetailsLayout />,
+    children: [
+      {
+        path: "/detailsLayout/categories",
+        element: <Category />,
+        loader: ({ params }) =>
+          fetch(
+            `https://learn-language-server.vercel.app/singlePart/${params.id}`
+          ),
+      },
+
+      // second layout
+      {
+        path: "/detailsLayout/singleCard/:id",
+        element: (
+          <PrivateRouter>
+            {" "}
+            <SingleCard />
+          </PrivateRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://learn-language-server.vercel.app/singlePart/${params.id}`
+          ),
+      },
     ],
   },
 ]);

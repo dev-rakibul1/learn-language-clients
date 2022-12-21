@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import CourseCover from "../courseCover/CourseCover";
 import Faq from "./Faq";
 
 const Blog = () => {
@@ -7,9 +8,7 @@ const Blog = () => {
   console.log(data);
   return (
     <div>
-      <h2 className="text-2xl font-semibold sm:text-4xl text-center text-purple-600">
-        Frequently Asked Questions
-      </h2>
+      <CourseCover>Frequently Asked Questions</CourseCover>
       {data.map((faq) => (
         <Faq key={faq.id} faq={faq} />
       ))}

@@ -5,7 +5,7 @@ const SingleBlog = ({ blog }) => {
   const { images, title, description, id } = blog;
   return (
     <div>
-      <div className="card bg-base-100 h-full">
+      <div className="card bg-base-100 h-full mt-7">
         <figure>
           <img src={images} alt="Shoes" />
         </figure>

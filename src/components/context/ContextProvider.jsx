@@ -54,6 +54,11 @@ const ContextProvider = ({ children }) => {
     return updateProfile(auth.currentUser, profile);
   };
 
+  // const updateUserProfile = (profile) => {
+  //   setLoading(true);
+  //   return updateProfile(auth.currentUser, profile);
+  // };
+
   // catch user
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {

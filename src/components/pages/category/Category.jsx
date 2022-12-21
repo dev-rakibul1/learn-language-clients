@@ -14,7 +14,7 @@ const Category = () => {
     <div>
       <div className="max-w-full  px-2 p-4">
         {category.map((items) => (
-          <Link to={`/singleCard/${items.id}`}>
+          <Link to={`/detailsLayout/singleCard/${items.id}`}>
             <button
               className="btn block w-full mt-6 bg-purple-600"
               key={items.title}

@@ -4,7 +4,7 @@ import Btn from "../button/Btn";
 
 const Bannar = () => {
   return (
-    <div className="bg-lime-600 py-6 px-4 mt-11">
+    <div className="bg-purple-600 py-6 px-4 mt-11">
       <div className="w-[90%] mx-auto md:flex items-center justify-between px-4">
         <div>
           <h1 className="text-white font-bold text-7xl">Best selling </h1>

@@ -132,7 +132,10 @@ const Login = () => {
         </p>
       </form>
 
-      <h3 className="register-or text-gray-900 text-xl font-semibold">Or</h3>
+      {/* Divider */}
+      <div className="flex flex-col w-full border-opacity-50 py-7">
+        <div className="divider">OR</div>
+      </div>
 
       <div className="text-center w-[75%] mx-auto">
         <button

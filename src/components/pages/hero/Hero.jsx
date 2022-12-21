@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const [toggle, setToggle] = useState(false);
-
-  const handleThemeColor = () => {
-    setToggle(!toggle);
-  };
-
   return (
-    <div className={toggle ? "bg-dark-themes" : "bg-light-themes"}>
+    <div>
       <div
         className="hero min-h-screen"
         style={{
@@ -23,15 +18,10 @@ const Hero = () => {
               With the world's largest web developer site. To learn from our
               code and you will be largest developer in the world!
             </p>
-            <button className="btn btn-primary">Get Started</button>
-            <div>
-              <p className="font-thin text-xs mb-2">Choice your themes mode</p>
-              <input
-                type="checkbox"
-                className="toggle"
-                onClick={handleThemeColor}
-              />
-            </div>
+
+            <Link to="/detailsLayout/singleCard/1">
+              <button className="btn btn-primary">Get Started</button>
+            </Link>
           </div>
         </div>
       </div>

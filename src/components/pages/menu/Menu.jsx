@@ -80,7 +80,10 @@ const Menu = () => {
             >
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                 <li className="text-white hover:text-indigo-200">
-                  <Link to="/">Course</Link>
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="text-white hover:text-indigo-200">
+                  <Link to="/detailsLayout/singleCard/1">Course</Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
                   <Link to="/blog">FAQ</Link>

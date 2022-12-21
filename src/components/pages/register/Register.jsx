@@ -10,7 +10,6 @@ const Register = () => {
     user,
     signInWithGoogleMethod,
     userEmailPassLogin,
-    facebookPopupLogin,
     userLogOut,
     signInWithFacebookMethod,
     updateUserProfile,
@@ -39,17 +38,28 @@ const Register = () => {
     }
     const password = form.password.value;
     console.log(name, photUrl, email, password);
-    handleUserEmailPassword(email, password);
-    handleUseUpdateProfile(name, photUrl);
+    handleUserEmailPassword(email, password, name, photUrl);
+    // handleUseUpdateProfile(name, photUrl);
   };
 
   // handle user email password sign
-  const handleUserEmailPassword = (email, password) => {
+  const handleUserEmailPassword = (email, password, name, photUrl) => {
     userEmailPassLogin(email, password)
       .then((result) => {
         const user = result.user;
         toast.success("Form register successfully");
         navigate(from, { replace: true });
+
+        // update user profile
+        const profile = {
+          displayName: name,
+          photoURL: photUrl,
+        };
+        console.log(profile);
+        updateUserProfile(profile)
+          .then(() => {})
+          .then((err) => console.log(err));
+        // End profile
       })
       .then((err) => {
         toast.error(err);
@@ -87,17 +97,17 @@ const Register = () => {
   };
 
   // update user profile
-  const handleUseUpdateProfile = (name, photoURL) => {
-    const profile = {
-      displayName: name,
-      photoURL: photoURL,
-    };
-    updateUserProfile(profile)
-      .then((res) => {
-        console.log(res);
-      })
-      .then((err) => console.log(err));
-  };
+  // const handleUseUpdateProfile = (name, photoURL) => {
+  //   const profile = {
+  //     displayName: name,
+  //     photoURL: photoURL,
+  //   };
+  //   updateUserProfile(profile)
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .then((err) => console.log(err));
+  // };
 
   return (
     <div className="md:w-[50%] px-2 mx-auto mt-16">
@@ -165,7 +175,10 @@ const Register = () => {
         </p>
       </form>
 
-      <h3 className="register-or text-gray-900 text-xl font-semibold">Or</h3>
+      {/* Divider */}
+      <div className="flex flex-col w-full border-opacity-50 py-7">
+        <div className="divider">OR</div>
+      </div>
 
       <div className="text-center w-[75%] mx-auto">
         <button

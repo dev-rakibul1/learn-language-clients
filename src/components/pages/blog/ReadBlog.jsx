@@ -7,7 +7,7 @@ const ReadBlog = () => {
   const { images, title, description, id } = data;
   return (
     <div>
-      <div className="card bg-base-100 h-full w-[75%] mx-auto">
+      <div className="card bg-base-100 h-full w-[75%] mx-auto mt-7">
         <figure>
           <img src={images} alt="blog" className="w-full" />
         </figure>

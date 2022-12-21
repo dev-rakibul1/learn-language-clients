@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { toast } from "react-hot-toast";
 import { FaPrint, FaRegEye, FaStar } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
 const MoreDetails = () => {
@@ -49,6 +49,18 @@ const MoreDetails = () => {
 
           {description}
         </div>
+      </div>
+
+      <div className="text-center">
+        <Link to="/detailsLayout/singleCard/1">
+          {" "}
+          <button
+            type="button"
+            className=" btn py-2 px-7 text-white bg-purple-600"
+          >
+            Go back
+          </button>
+        </Link>
       </div>
     </div>
   );
